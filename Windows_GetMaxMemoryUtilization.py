@@ -13,8 +13,7 @@ def get_process_list():
     process = {p.memory_percent(): p.info for p in psutil.process_iter(['name', 'username'])}
     if PASSWORDS.DEBUG:
         logger.debug(f"process:\n{pprint.pformat(process)}")
-    # TODO in Python 3.6 this sort not working
-    process = dict((sorted(process.items(), reverse=True))[-10:])
+    process = dict((sorted(process.items(), reverse=True))[:10])
     # print(process)
     return process
 
